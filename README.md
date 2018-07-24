@@ -25,6 +25,8 @@ The team consists of five people working in the Woody Weeds project: two senior 
 
 #### Purity Rima
 
+Purity Rima is a Lecturer in Geography at Chuka University, Kenya. She is pursuing a PhD at University of Nairobi + KEFRI Kenya, on mapping the spatiotemporal dynamics of Prosopis juliflora invasion in Baringo.
+
 #### Sandra Eckert
 
 #### Charles Kilawe
