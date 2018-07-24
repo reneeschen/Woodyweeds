@@ -26,6 +26,8 @@ The team consists of five people working in the Woody Weeds project: two senior 
 #### Purity Rima
 
 #### Sandra Eckert
+Sandra Eckert is a senior research scientist working at the Centre for Development and Environment at the University of Bern, Switzerland. She is a specialist in remote sensing applications such as LULCC, land degradation and restoration assessments etc. In the Woody Weeds project she is responsible for the spatial assessment and monitoring of environmental impacts of woody invasive alien plant species in Eastern Africa.
+
 
 #### Charles Kilawe
 
