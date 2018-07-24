@@ -33,6 +33,11 @@ Sandra Eckert is a senior research scientist working at the Centre for Developme
 
 
 #### Charles Kilawe
+Country : Tanzania, East Africa
+Affiliation: Depertment of Ecosystems and Conservation,Sokoine University of Agriculture
+
+My expertise is on plant nutrition,livelihood analysis, land use, GIS & Remote Sensing.  In this project I contribute knowledge on linking social economic and environmental attributes in understanding the impacts of Alen invasive species in East Africa
+
 
 #### René Eschen
 René is an ecologist working with CABI, a intergovernmental organisation, and is based in Delémont, Switzerland. He co-leads a work package in the Woody Weeds project that is focussed on collecting ecological and socio-economic data on the plot or community level in Baringo.
