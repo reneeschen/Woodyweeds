@@ -19,6 +19,7 @@ Clearly, the management of Prosopis and restoration of grasslands is a complex p
 3.	modelling of future land use and IAS management scenario(s) and their impact on SOC stocks, and
 4.	an assessment of what the implications of the other objectives are for carbon credits and livelihoods, in particular the effect of grassland restoration on the carrying capacity with respect to cattle. 
 
+### Introducing the Woody Weeds team at the SESYNC Summer Institute
 The team consists of five people working in the Woody Weeds project: two senior scientists from Switzerland, who co-lead two of the Work Packages in the Woody Weeds project, and three early-career scientists, including two fourth-year PhD students, from three Eastern African countries. The team members cover socio-economy, remote sensing and GIS, ecology and soil science.  
 
 #### Ketema Bekele
@@ -32,5 +33,5 @@ Purity Rima is a Lecturer in Geography at Chuka University, Kenya. She is pursui
 #### Charles Kilawe
 
 #### René Eschen
-
+René is an ecologist working with CABI, a intergovernmental organisation, and is based in Delémont, Switzerland. He co-leads a work package in the Woody Weeds project that is focussed on collecting ecological and socio-economic data on the plot or community level in Baringo.
 
