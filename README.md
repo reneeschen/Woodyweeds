@@ -28,6 +28,11 @@ The team consists of five people working in the Woody Weeds project: two senior 
 #### Sandra Eckert
 
 #### Charles Kilawe
+Country : Tanzania, East Africa
+Affiliation: Depertment of Ecosystems and Conservation,Sokoine University of Agriculture
+
+My expertise is on plant nutrition,livelihood analysis, land use, GIS & Remote Sensing.  In this project I contribute knowledge on linking social economic and environmental attributes in understanding the impacts of Alen invasive species in East Africa
+
 
 #### René Eschen
 
