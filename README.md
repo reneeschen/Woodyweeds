@@ -30,5 +30,5 @@ The team consists of five people working in the Woody Weeds project: two senior 
 #### Charles Kilawe
 
 #### René Eschen
-René is an ecologist working with CABI, a intergovernmental organisation, and is based in Delémont, Switzerland. 
+René is an ecologist working with CABI, a intergovernmental organisation, and is based in Delémont, Switzerland. He co-leads a work package in the Woody Weeds project that is focussed on collecting ecological and socio-economic data on the plot or community level in Baringo.
 
