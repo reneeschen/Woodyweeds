@@ -21,4 +21,14 @@ Clearly, the management of Prosopis and restoration of grasslands is a complex p
 
 The team consists of five people working in the Woody Weeds project: two senior scientists from Switzerland, who co-lead two of the Work Packages in the Woody Weeds project, and three early-career scientists, including two fourth-year PhD students, from three Eastern African countries. The team members cover socio-economy, remote sensing and GIS, ecology and soil science.  
 
+#### Ketema Bekele
+
+#### Purity Rima
+
+#### Sandra Eckert
+
+#### Charles Kilawe
+
+#### René Eschen
+
 
