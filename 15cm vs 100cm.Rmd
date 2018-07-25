@@ -1,0 +1,47 @@
+---
+title: "Untitled"
+author: "CK, PR, KBD, RE & SE"
+date: "25 July 2018"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+# With the code we set up the environment: load required packages and define where the data and outputs are located
+
+rm(list=ls(all=TRUE))
+setwd("C:/Users/eschenr/Dropbox/WW_SESYNC/data/Soil_data_Baringo/")
+
+require(nlme)
+require(lme4)
+require(openxlsx)
+require(lmerTest)
+require(ggplot2)
+require(knitr)
+library(reshape)
+library(reshape2)
+require(plyr)
+require(dplyr)
+
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r load_data, echo=FALSE}
+data=read.xlsx("SOC_ALL_results_276_Final_252.xlsx", sheet=7)
+data$count<-1
+# plot(data)
+```
+
+We loaded the data to compare SOC in the top 15 cm and the top 100cm.
+
+```{r plot_data, echo=FALSE}
+model<-log(data$Total)~log(data$C015)
+plot(model,pch=16)+
+abline(lm(model),lwd=2)
+```
+
+```{r analyse_data, echo=FALSE}
+summary(lm(model))
+```
+```{r analyse_data, echo=FALSE}
+plot(lm(model)$resid)
+```
