@@ -35,23 +35,22 @@ We loaded the data to compare SOC in the top 15 cm and the top 100cm.
 ```{r Puritys_subset, echo=FALSE}
 Purity=subset(data,Dataset=="Purity")
 Purity2=subset(Purity,Depth==15)
-plot(Purity2[,c(3:5,8,10)])
+#plot(Purity2[,c(3:5,8,10)])
 ```
 
 We only focus on Purity's data for the moment: is there a relationship between SOC in the top 15cm and total SOC?
 
 ```{r plot_data_0, echo=FALSE}
 interaction.plot(Purity$Depth,Purity$Landcover,Purity$TotalC015)
+```
 
+```{r plot_data_1, echo=FALSE, warning=FALSE}
+#plot(Total~TotalC015,data=Purity,pch=16,bty="l",las=1,col=as.numeric(as.factor(Purity$Landcover)),cex=as.numeric(as.factor(Purity$Landcover)))
 # 1 = degraded
 # 2 = pristine
 # 3 = prosopis_high
 # 4 = prosopis_low
 # 5 = restored
-```
-
-```{r plot_data_1, echo=FALSE}
-plot(Total~TotalC015,data=Purity,pch=16,bty="l",las=1,col=as.numeric(as.factor(Purity$Landcover)),cex=as.numeric(as.factor(Purity$Landcover)))
 
 ggplot(data = Purity, aes(x = TotalC015, y = Total, color = Landcover))+       
   geom_point()+stat_smooth(method="lm",se=FALSE)
@@ -62,12 +61,11 @@ It appears that for some landcover types, there is no relationship between SOC i
 ```{r analyse_data, echo=FALSE}
 model=Purity2$Total~Purity2$TotalC015*Purity2$Landcover
 summary(aov(lm(model)))
-head(Purity2)
 ```
 The analysis confirms that there are significant differences in the amount of total SOC stocks among the landcover types but also on the slope of the relationship between total SOC stocks and SOC in the top 15cm. In particular, it seems that SOC stocks in degraded are lower than in restored and and pristine grasslands. In the two Prosopis classes SOC stocks are intermediate. 
 
 ```{r plot_data, echo=FALSE}
-pairwise.t.test(Purity2$Total,Purity2$Landcover)
+#pairwise.t.test(Purity2$Total,Purity2$Landcover)
 barplot(tapply(Purity2$Total,Purity2$Landcover,mean),beside=T,las=1,ylim=c(0,55))+
   arrows(c(0.7,1.9,3.1,4.3,5.5),tapply(Purity2$Total,Purity2$Landcover,mean),c(0.7,1.9,3.1,4.3,5.5),tapply(Purity2$Total,Purity2$Landcover,mean)+tapply(Purity2$Total,Purity2$Landcover,sd)/sqrt(tapply(Purity2$count,Purity2$Landcover,sum)),angle=90)+
   arrows(c(0.7,1.9,3.1,4.3,5.5),tapply(Purity2$Total,Purity2$Landcover,mean),c(0.7,1.9,3.1,4.3,5.5),tapply(Purity2$Total,Purity2$Landcover,mean)-tapply(Purity2$Total,Purity2$Landcover,sd)/sqrt(tapply(Purity2$count,Purity2$Landcover,sum)),angle=90)+
@@ -78,4 +76,5 @@ barplot(tapply(Purity2$Total,Purity2$Landcover,mean),beside=T,las=1,ylim=c(0,55)
 mean.SOC100=tapply(Purity2$Total,Purity2$Landcover,mean)
 se.SOC100=tapply(Purity2$Total,Purity2$Landcover,sd)/sqrt(tapply(Purity2$count,Purity2$Landcover,sum))
 mean.se.SOC100=cbind(mean.SOC100,se.SOC100)
+mean.se.SOC100
 ```
