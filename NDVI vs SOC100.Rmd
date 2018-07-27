@@ -37,12 +37,12 @@ We loaded the data to obtain the coordinates and SOC content of the soil samples
 pts1b=subset(data,Depth==15)
 pts1b=subset(pts1b,Dataset=='Purity')
 
-soc_raster <- raster("Spatial_NDVI_Baringo/LS_2015Mask_NDVIdry_15mNN.tif")
+ndvi_sp <- raster("Spatial_NDVI_Baringo/LS_2015Mask_NDVIdry_15mNN.tif")
 
-prj<-'+proj=longlat +ellps=WGS84 +datum=WGS84 +no_defs'
-soc_raster <- projectRaster(soc_raster, crs=prj)
+#prj<-'+proj=longlat +ellps=WGS84 +datum=WGS84 +no_defs'
+#projectRaster(soc_raster, crs=prj, filename='ndvi_prj.tif')
 
-soc_sp <- extract(soc_raster, pts1b[,3:4])
+ndvi_sp <- extract(ndvi_raster, pts1b[,3:4])
 
 
 ```
