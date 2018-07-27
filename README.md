@@ -9,7 +9,7 @@ www.woodyweeds.org
 4.	an assessment of what the implications of the other objectives are for carbon credits and livelihoods, in particular the effect of grassland restoration on the carrying capacity with respect to cattle. 
 
 ### Introducing the Woody Weeds team at the SESYNC Summer Institute
-The team consists of five people working in the Woody Weeds project: two senior scientists from Switzerland, who co-lead two of the Work Packages in the Woody Weeds project, and three early-career scientists, including two fourth-year PhD students, from three Eastern African countries. The team members cover socio-economy, remote sensing and GIS, ecology and soil science.  
+The team consists of five people working in the Woody Weeds project. The team members cover socio-economy, remote sensing and GIS, ecology and soil science.  
 #### Ketema Bekele
 Ketema Bekele is an Agricultural Economist
 #### Purity Rima
