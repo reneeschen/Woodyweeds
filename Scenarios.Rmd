@@ -1,0 +1,71 @@
+---
+title: "Scenarios"
+author: "RE, KB"
+date: "27 July 2018"
+output:
+  html_document:
+    df_print: paged
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+# Introduction
+
+we want to evaluate the combined costs and benefits of *Prosopis juliflora* management. This may assist communities and other stakeholders deciding about management of the species in a way that maximises benefits, or choose those areas where implementation costs don't exceed the potential benefits.  
+
+## Rationale for potential scenarios
+
+The idea is to propose different management scenarios that include reductions in Prosopis cover and/or restoration. The implementation is costed and the total area that can be managed in both Scenarios will be dependent on the community's WTP.
+
+1. Implementation costs are expressed as USD/pixel. The cost of clearing is dependent on the invasion level of the pixel *[find relationship]*, but the cost of sowing grasses is constant. 
+1. After clearing, there is wood available that can be sold for charcoal. Obviously this amount is dependent also on Prosopis cover in the pixel *[find relationship or maximum yield, or a maximum and presume linear increase to this maximum]*.
+1. The benefits, presumed to just occur, are also expressed as a monetary value per pixel. 
+1. Although difficult to quantify, we assume that increased grassland area will result in an increase in the carrying capacity for cattle (the preferred livestock; capital) and possibly income from livestock sales.
+
+## Summary of proposed scenarios
+. | Clearing|Clearing and sowing|Do nothing
+--|---------|-------------------|----------
+**Implementation costs**| | |
+Intended outcome|Clear X% of invaded|Clear Y% of invaded and restore grassland|Status quo or expansion of invasion 
+Clearing|f(x)|f(x)|0 
+Sowing of grasses|0|20|0
+**Benefits**| | |
+SOC|-100|150|0
+Income from charcoal|f(x)|f(x)|0
+Income from livestock|0|50|0
+Number of cattle|0|1|0
+
+Differences in the amount of required clearing also depend on the invasion level in a location. Although we didn't find a relationship between invasion level on the community level, there was a positive relationship between the invasion level surrounding households and the desired reduction in Prosopis cover. Note that this relationship is dependent on the amount of income that the household incurs from charcoal making *[at present not sure what this relationship looks like]*. Households that incurr more income from livestock sales also prefer stronger reductions in Prosopis presence.
+
+```{r Table_1, echo=FALSE, message=FALSE, warning=FALSE}
+rm(list=ls(all=TRUE))
+
+require(nlme)
+require(lme4)
+require(openxlsx)
+require(lmerTest)
+require(ggplot2)
+require(knitr)
+library(reshape)
+library(reshape2)
+require(plyr)
+require(dplyr)
+library(raster)
+library(proj4)
+
+data=read.xlsx("C:/Users/eschenr/Dropbox/WW_SESYNC/data/Socio_eco_data_Baringo/Baringo Cost and Mgmt.xlsx", sheet=1)
+data$count<-1
+
+model1<-glm(data$Reduce.Cover.by~data$Invasion.HH*data$IncmLivstkUSD+data$Invasion.HH*data$IncmCharcLUSD+data$Invasion.locality,family="poisson")
+summary(aov(model1))
+
+```
+
+
+We didn't find a significant relationship between invasion level and the desired reduction in Prosopis density and we assume that, although more expensive to implement, it is both more desirable and more sustainable to entirely remove the species from the identified pixels.
+
+```{r Table_2, echo=FALSE, message=FALSE, warning=FALSE}
+model2<-glm(data$Reduce.Density.by~data$Invasion.HH*data$IncmLivstkUSD+data$Invasion.HH*data$IncmCharcLUSD+data$Invasion.locality, family="poisson")
+summary(aov(model2))
+```

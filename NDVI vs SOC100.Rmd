@@ -1,0 +1,50 @@
+---
+title: "NDVI vs SOC100"
+author: "RE"
+date: "26 July 2018"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+rm(list=ls(all=TRUE))
+knitr::opts_knit$set(echo = TRUE, root.dir = "C:/Users/eschenr/Dropbox/WW_SESYNC/data/")
+# With the code we set up the environment: load required packages and define where the data and outputs are located
+
+require(nlme)
+require(lme4)
+require(openxlsx)
+require(lmerTest)
+require(ggplot2)
+require(knitr)
+library(reshape)
+library(reshape2)
+require(plyr)
+require(dplyr)
+library(raster)
+library(proj4)
+library(sf)
+```
+
+```{r load_data, echo=FALSE}
+data=read.xlsx("Soil_data_Baringo/SOC_ALL_results_276_Final_252 RE.xlsx", sheet=1)
+data$count<-1
+
+```
+
+We loaded the data to obtain the coordinates and SOC content of the soil samples taken by Purity in 2016.
+
+
+```{r prepare_data, include=FALSE}
+pts1b=subset(data,Depth==15)
+pts1b=subset(pts1b,Dataset=='Purity')
+
+soc_raster <- raster("Spatial_NDVI_Baringo/LS_2015Mask_NDVIdry_15mNN.tif")
+
+
+
+soc_sp <- extract(soc_raster, pts1b[,3:4])
+
+
+```
+
+
