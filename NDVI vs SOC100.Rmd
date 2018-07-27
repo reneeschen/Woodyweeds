@@ -1,5 +1,5 @@
 ---
-title: "NDVI vs SOC100"
+title: "NDVI vs SOC15"
 author: "RE"
 date: "26 July 2018"
 output: html_document
@@ -28,6 +28,8 @@ library(sf)
 ```{r load_data, echo=FALSE}
 data=read.xlsx("Soil_data_Baringo/SOC_ALL_results_276_Final_252 RE.xlsx", sheet=1)
 data$count<-1
+Purity=subset(data,Dataset=="Purity")
+Purity2=subset(Purity,Depth==15)
 
 ```
 
@@ -37,14 +39,38 @@ We loaded the data to obtain the coordinates and SOC content of the soil samples
 pts1b=subset(data,Depth==15)
 pts1b=subset(pts1b,Dataset=='Purity')
 
-ndvi_sp <- raster("Spatial_NDVI_Baringo/LS_2015Mask_NDVIdry_15mNN.tif")
+ndvi_sp_dry <- raster("Spatial_NDVI_Baringo/LS_2015Mask_NDVIdry_15mNN_wgs84.tif")
+ndvi_sp_wet <- raster("Spatial_NDVI_Baringo/LS_2015Mask_NDVIwet_15mNN_wgs84.tif")
 
 #prj<-'+proj=longlat +ellps=WGS84 +datum=WGS84 +no_defs'
 #projectRaster(soc_raster, crs=prj, filename='ndvi_prj.tif')
 
-ndvi_sp <- extract(ndvi_raster, pts1b[,3:4])
-
+ndvi_sp_1 <- extract(ndvi_sp_dry, pts1b[,3:4])
+ndvi_sp_2 <- extract(ndvi_sp_wet, pts1b[,3:4])
 
 ```
 
+```{r plot1}
+plot(Purity2$TotalC015~ndvi_sp_1)+
+abline(lm(Purity2$TotalC015~ndvi_sp_1))+
+  text(0.3,20,"P < 0.001, R^2 = 0.19")
+#summary(lm(Purity2$TotalC015~ndvi_sp_1))
 
+```
+
+```{r plot2}
+plot(Purity2$TotalC015~ndvi_sp_2)+
+abline(lm(Purity2$TotalC015~ndvi_sp_2))+
+  text(0.3,20,"P < 0.001, R^2 = 0.23")
+#summary(lm(Purity2$Total~ndvi_sp_2))
+
+```
+
+```{r plot2}
+ndvi_sp_mean=(ndvi_sp_1+ndvi_sp_2)/2
+plot(Purity2$TotalC015~ndvi_sp_mean)+
+abline(lm(Purity2$TotalC015~ndvi_sp_mean))+
+  text(0.3,20,"P < 0.001, R^2 = 0.22")
+#summary(lm(Purity2$TotalC015~ndvi_sp_mean))
+
+```
