@@ -36,6 +36,8 @@ Income from charcoal|f(x)|f(x)|0
 Income from livestock|0|50|0
 Number of cattle|0|1|0
 
+### Spatially contextual selection of scenarios
+
 Differences in the amount of required clearing also depend on the invasion level in a location. Although we didn't find a relationship between invasion level on the community level, there was a positive relationship between the invasion level surrounding households and the desired reduction in Prosopis cover. Note that this relationship is dependent on the amount of income that the household incurs from charcoal making *[at present not sure what this relationship looks like]*. Households that incurr more income from livestock sales also prefer stronger reductions in Prosopis presence.
 
 ```{r Table_1, echo=FALSE, message=FALSE, warning=FALSE}
@@ -62,10 +64,15 @@ summary(aov(model1))
 
 ```
 
-
 We didn't find a significant relationship between invasion level and the desired reduction in Prosopis density and we assume that, although more expensive to implement, it is both more desirable and more sustainable to entirely remove the species from the identified pixels.
 
 ```{r Table_2, echo=FALSE, message=FALSE, warning=FALSE}
 model2<-glm(data$Reduce.Density.by~data$Invasion.HH*data$IncmLivstkUSD+data$Invasion.HH*data$IncmCharcLUSD+data$Invasion.locality, family="poisson")
 summary(aov(model2))
 ```
+
+### Modelling of management scenarios
+
+As indicated above, the cost-benefit ratio of the proposed scenarios primarily depends on the Prosopis cover in a pixel. The cost-benefit ratio may affect decisions about the number of pixels to be managed. This is related to the available budget. We propose that the budget can be based on the willingness to pay (WTP) for biodiversity (which includes grasslands) in each community (e.g. WTP * population_size). This would define the maximum area on which the scenarios may be implemented. 
+
+A uniform distribution of management is unrealistic and it is possible to improve the model based on our knowledge of the interviewed (georeferenced) households. Our analysis revealed variation in individual preferences for the amount of reduction in Prosopis abundance that can partially be explained by the amount of Prosopis in the immediate vicinity of the households, as well as the number of livestock owned. Hence, rather than assigning the management randomly to pixels, we may focus them on areas where the people prefer management. It would be possible to focus on preferred areas by creating a spatial layers with areas around households weighted by the household preference for reduction in Prosopis cover (or Prosopis cover in the immediate surrounding) and the number of livestock owned. 
