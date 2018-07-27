@@ -33,14 +33,14 @@ data$count<-1
 
 We loaded the data to obtain the coordinates and SOC content of the soil samples taken by Purity in 2016.
 
-
 ```{r prepare_data, include=FALSE}
 pts1b=subset(data,Depth==15)
 pts1b=subset(pts1b,Dataset=='Purity')
 
 soc_raster <- raster("Spatial_NDVI_Baringo/LS_2015Mask_NDVIdry_15mNN.tif")
 
-
+prj<-'+proj=longlat +ellps=WGS84 +datum=WGS84 +no_defs'
+soc_raster <- projectRaster(soc_raster, crs=prj)
 
 soc_sp <- extract(soc_raster, pts1b[,3:4])
 
