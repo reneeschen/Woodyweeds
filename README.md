@@ -17,7 +17,16 @@ Purity Rima is mapping the spatiotemporal dynamics of *Prosopis juliflora* invas
 #### Sandra Eckert
 Sandra Eckert is a specialist in remote sensing applications such as LULC, land degradation and restoration assessments etc. 
 #### Charles Kilawe
+
+Country : Tanzania, East Africa
+
+Affiliation: Depertment of Ecosystems and Conservation,Sokoine University of Agriculture
+
+My expertise is on plant nutrition,livelihood analysis, land use, GIS & Remote Sensing.  In this project I contribute knowledge on linking social economic and environmental attributes in understanding the impacts of Alen invasive species in East Africa
+
+=======
 Charles's expertise is plant nutrition,livelihood analysis, land use, GIS & Remote Sensing.
+
 #### René Eschen
 René is an ecologist.
 
