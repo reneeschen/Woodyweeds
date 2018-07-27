@@ -1,0 +1,72 @@
+---
+title: "Socio-economic data"
+author: "RE, KB"
+date: "26 July 2018"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+rm(list=ls(all=TRUE))
+knitr::opts_knit$set(echo = TRUE, root.dir = "C:/Users/eschenr/Dropbox/WW_SESYNC/data/")
+# With the code we set up the environment: load required packages and define where the data and outputs are located
+
+require(nlme)
+require(lme4)
+require(openxlsx)
+require(lmerTest)
+require(ggplot2)
+require(knitr)
+library(reshape)
+library(reshape2)
+require(plyr)
+require(dplyr)
+library(raster)
+library(proj4)
+```
+
+
+```{r load_data, echo=FALSE}
+data=read.xlsx("Socio_eco_data_Baringo/Baringo Cost and Mgmt.xlsx", sheet=1)
+data$count<-1
+plot(data[,c(3:17)])
+```
+
+```{r analyse_data_1, echo=FALSE}
+data$Reduce.cover.by.corrected<-data$Reduce.Cover.by*(data$IncomeLives.Perc/100)
+summary(data$Reduce.cover.by.corrected)
+plot(data$Reduce.cover.by.corrected~data$Invasion.HH,pch=16,bty="l",xlab="Invasion level around the HH",ylab="Desired reduction (corrected for %income from livestock")+
+abline(lm(data$Reduce.cover.by.corrected~data$Invasion.HH))
+summary(lm(data$Reduce.cover.by.corrected~data$Invasion.HH))
+
+summary((lm(data$Reduce.Cover.by~data$Invasion.HH*data$IncmLivstkUSD)))
+model1<-((lm(data$Reduce.Cover.by~data$Invasion.HH*data$IncmCharcLUSD)))
+model2<-((lm(data$Reduce.Cover.by~data$Invasion.HH+data$IncmCharcLUSD)))
+anova(model1,model2)
+summary(model1)
+```
+
+```{r analyse_data_1b, echo=FALSE}
+model1<-((lm(data$Reduce.Cover.by~data$Invasion.HH+data$IncmLivstkUSD)))
+model2<-((lm(data$Reduce.Cover.by~data$Invasion.HH)))
+summary(model1)
+anova(model1,model2)
+
+
+model1<-glm(data$Reduce.Cover.by~data$Invasion.HH*data$IncmLivstkUSD+data$Invasion.HH*data$IncmCharcLUSD+data$Invasion.locality,family="poisson")
+summary(aov(model1))
+```
+There are positive relationships between the desired reduction in Prosopis cover and the invasion level around the households and the income from livestock. No relationship with invasion level on the community level and income from charcoal. However, the interaction between invasion level around the HH and income from charcoal may indicate that 
+
+```{r analyse_data_1c, echo=FALSE}
+model2<-glm(data$Reduce.Density.by~data$Invasion.HH*data$IncmLivstkUSD+data$Invasion.HH*data$IncmCharcLUSD+data$Invasion.locality, family="poisson")
+summary(aov(model2))
+```
+There are no effects of invasion level, income from charcoal or livestock on the desired reduction in Prosopis density. No differences among communities. 
+
+```{r analyse_data_2, echo=FALSE}
+data$Reduce.cover.by.corrected<-data$Reduce.Cover.by*(data$IncomeCharcoal.Perc/100)
+plot(data$Reduce.cover.by.corrected~data$Invasion.HH,pch=16,bty="l")+
+abline(lm(data$Reduce.cover.by.corrected~data$Invasion.HH))
+summary(lm(data$Reduce.cover.by.corrected~data$Invasion.HH))
+
+```
