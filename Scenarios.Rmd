@@ -5,6 +5,7 @@ date: "27 July 2018"
 output:
   html_document:
     df_print: paged
+  word_document: default
 ---
 
 ```{r setup, include=FALSE}
@@ -70,6 +71,22 @@ We didn't find a significant relationship between invasion level and the desired
 model2<-glm(data$Reduce.Density.by~data$Invasion.HH*data$IncmLivstkUSD+data$Invasion.HH*data$IncmCharcLUSD+data$Invasion.locality, family="poisson")
 summary(aov(model2))
 ```
+
+```{r cost-relationships, echo=FALSE, message=FALSE, warning=FALSE}
+data2=read.xlsx("C:/Users/eschenr/Dropbox/WW_SESYNC/data/Socio_eco_data_Baringo/Baringo Cost and Mgmt.xlsx", sheet=2)
+data2$count<-1
+data2$pid2=as.factor(data2$pid)
+
+summary(aov((data2$Cost~data2$Cover*data2$Location+Error(data2$pid2))))
+summary(lm((data2$Cost~data2$Cover)))
+```
+
+```{r cost-relationships, echo=FALSE, message=FALSE, warning=FALSE}
+plot(data2$Cost~data2$Cover, xlim=c(0,100))+
+abline(lm((data2$Cost~data2$Cover)))
+```
+
+Relationship between cover and cost of clearing: cost (USD) = 0.9338 + 0.15792 * cover (%)
 
 ### Modelling of management scenarios
 
