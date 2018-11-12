@@ -18,12 +18,12 @@ we want to evaluate the combined costs and benefits of *Prosopis juliflora* mana
 
 ## Rationale for potential scenarios
 
-The idea is to propose different management scenarios that include reductions in Prosopis cover and/or restoration. The implementation is costed and the total area that can be managed in both Scenarios will be dependent on the community's WTP.
+The idea is to propose different management scenarios that include reductions in Prosopis cover and/or restoration. The implementation is costed and the total area that can be managed in both Scenarios will be dependent on the community's WTP. WTP is based on Ketema's paper () and the per capita value is multiplied by half he population size, since this ia the number of people of working age, or total population size? We assume that the selected management is applied in a single year. *[so we need scenarios of the fraction high and low density Prosopis will be cleared? Or base the choice on lowest cost, so largest area cleared?]* *[so we may want a map showing where the proposed management scenarios would exceed WTP or where the benefits are largest]*
 
-1. Implementation costs are expressed as USD/pixel. The cost of clearing is dependent on the invasion level of the pixel *[find relationship]*, but the cost of sowing grasses is constant. 
-1. After clearing, there is wood available that can be sold for charcoal. Obviously this amount is dependent also on Prosopis cover in the pixel *[find relationship or maximum yield, or a maximum and presume linear increase to this maximum]*.
+1. Implementation costs are expressed as USD/pixel. The cost of clearing is dependent on the invasion level of the pixel: *[USD per hectare (or acre) = 9.963 + 0.1386 x Cover] (see method for obtaining relationship below)*, but the cost of sowing grasses is constant *[Arne: KSH1000/kg of seed, 40kg/ha]*. 
+1. After clearing, there is wood available that can be sold for charcoal. Obviously this amount is dependent also on Prosopis cover in the pixel and we approximate this by taking the relationship between the cover of Prosopis around each household and the household income from charcoal. *[10^(2.813827)+Cover x 10^(0.00243119)]*. It is better to use the calculation from Theo's paper #[With an average price of 4 USD for a bag of charcoal of 25 kg and a wood to charcoal conversion rate of 25% (Pandey et al., 2012)]# and his relationship between Prosopis cover and woody biomass #[ASK]#.
 1. The benefits, presumed to just occur, are also expressed as a monetary value per pixel. 
-1. Although difficult to quantify, we assume that increased grassland area will result in an increase in the carrying capacity for cattle (the preferred livestock; capital) and possibly income from livestock sales.
+1. Although difficult to quantify, we assume that increased grassland area will result in an increase in the carrying capacity for cattle (the preferred livestock; capital) and possibly income from livestock sales. The quality of the resultant grassland is presumed and constant.
 
 ## Summary of proposed scenarios
 . | Clearing|Clearing and sowing|Do nothing
@@ -64,8 +64,14 @@ data$count<-1
 model1<-glm(data$Reduce.Cover.by~data$Invasion.HH*data$IncmLivstkUSD+data$Invasion.HH*data$IncmCharcLUSD+data$Invasion.locality,family="poisson")
 summary(aov(model1))
 
-```
+data1=subset(data,IncmCharcLUSD>0)
+modelx=aov(log10(data1$IncmCharcLUSD)~data1$Invasion.HH+Error(data1$Location))
+summary(modelx)
+coef(modelx)
 
+plot(log10(data1$IncmCharcLUSD)~data1$Invasion.HH)+
+  abline(2.813827,0.00243119)
+```
 We didn't find a significant relationship between invasion level and the desired reduction in Prosopis density and we assume that, although more expensive to implement, it is both more desirable and more sustainable to entirely remove the species from the identified pixels.
 
 ```{r Table_2, echo=FALSE, message=FALSE, warning=FALSE}
@@ -78,7 +84,9 @@ data2=read.xlsx("C:/Users/eschenr/Dropbox/WW_SESYNC/data/Socio_eco_data_Baringo/
 data2$count<-1
 data2$pid2=as.factor(data2$pid)
 
-summary(aov((data2$Cost~data2$Cover*data2$Location+Error(data2$pid2))))
+model=aov((data2$Cost~data2$Cover*data2$Location+Error(data2$pid2)))
+coef((model))
+
 summary(lm((data2$Cost~data2$Cover)))
 ```
 
