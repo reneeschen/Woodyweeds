@@ -5,6 +5,7 @@ date: "27 July 2018"
 output:
   html_document:
     df_print: paged
+  pdf_document: default
   word_document: default
 ---
 
@@ -39,7 +40,7 @@ Number of cattle|0|1|0
 
 ### Spatially contextual selection of scenarios
 
-Differences in the amount of required clearing also depend on the invasion level in a location. Although we didn't find a relationship between invasion level on the community level, there was a positive relationship between the invasion level surrounding households and the desired reduction in Prosopis cover. Note that this relationship is dependent on the amount of income that the household incurs from charcoal making *[at present not sure what this relationship looks like]*. Households that incurr more income from livestock sales also prefer stronger reductions in Prosopis presence.
+Differences in the amount of required clearing also depend on the invasion level in a location. Although we didn't find a relationship between invasion level on the community level, there was a positive relationship between the invasion level surrounding households and the desired reduction in Prosopis cover. Note that this relationship is dependent on the amount of income that the household incurs from charcoal making *[at present not sure what this relationship looks like]*. Households that incur more income from livestock sales also prefer stronger reductions in Prosopis presence.
 
 ```{r Table_1, echo=FALSE, message=FALSE, warning=FALSE}
 rm(list=ls(all=TRUE))
@@ -81,7 +82,7 @@ summary(aov((data2$Cost~data2$Cover*data2$Location+Error(data2$pid2))))
 summary(lm((data2$Cost~data2$Cover)))
 ```
 
-```{r cost-relationships, echo=FALSE, message=FALSE, warning=FALSE}
+```{r cost-relationships2, echo=FALSE, message=FALSE, warning=FALSE}
 plot(data2$Cost~data2$Cover, xlim=c(0,100))+
 abline(lm((data2$Cost~data2$Cover)))
 ```
@@ -93,3 +94,9 @@ Relationship between cover and cost of clearing: cost (USD) = 0.9338 + 0.15792 *
 As indicated above, the cost-benefit ratio of the proposed scenarios primarily depends on the Prosopis cover in a pixel. The cost-benefit ratio may affect decisions about the number of pixels to be managed. This is related to the available budget. We propose that the budget can be based on the willingness to pay (WTP) for biodiversity (which includes grasslands) in each community (e.g. WTP * population_size). This would define the maximum area on which the scenarios may be implemented. 
 
 A uniform distribution of management is unrealistic and it is possible to improve the model based on our knowledge of the interviewed (georeferenced) households. Our analysis revealed variation in individual preferences for the amount of reduction in Prosopis abundance that can partially be explained by the amount of Prosopis in the immediate vicinity of the households, as well as the number of livestock owned. Hence, rather than assigning the management randomly to pixels, we may focus them on areas where the people prefer management. It would be possible to focus on preferred areas by creating a spatial layers with areas around households weighted by the household preference for reduction in Prosopis cover (or Prosopis cover in the immediate surrounding) and the number of livestock owned. 
+
+### Value of changes in SOC
+
+The price of SOC is based on the European Union Emissions Trading Scheme, the largest market place for Carbon credits. The market is based on the premise that the number of emission allowances is limited. The price of emission allowances depends on demand and the price has increased sharply in the past two years, from an average of ca. €7.5 during the period 2013-2017 to almost €20 per tonne at the end of 2018 (https://markets.businessinsider.com/commodities/co2-emissionsrechte). Currently the "EU does not allow CO2 credits under ETS to be obtained from sinks (e.g. reducing CO2 by planting trees). However, some governments and industry representatives lobby for their inclusion. The inclusion is currently opposed by NGOs as well as the EU commission itself, arguing that sinks are surrounded by too many scientific uncertainties over their permanence and that they have inferior long-term contribution to climate change compared to reducing emissions from industrial sources. (Wikipedia)". We decided to assume that it will be allowed to add sinks in the form of grasslands, since restoration of grassland increases SOC to levels comparable to those in pristine grasslands and we assume that communities value such grasslands enough to manage them in a way that will result in their long-term establishment. We chose different values: the seemingly longer-term low value of €7.5/t, to reflect that the value may come down if sinks are allowed in the scheme, and the current high value of €20/t to reflect the likelihood that emissions in some sectors of the economy will continue to increase and the availability of emission allowances will become increasingly limited.
+
+
